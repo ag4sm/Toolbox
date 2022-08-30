@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+{% block title %}All Tools List{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>All Tools</h1>
+        <div class="container" style="background-color:lightgrey; border-radius:10px;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tool Brand</th>
+                        <th scope="col">Tool Name</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for tool in tools %}
+                    <tr scope="row">
+                        <td>{{ tool.tool_brand }}</td>
+                        <td>{{ tool.tool_name }}</td>
+                        <td>{{tool.quantity}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+{% block title %}Add Tool{% endblock %}
+{% block content %}
+    <div class="container">        
+        <h2>Add a Tool</h2>
+            <form action="{{url_for('main.newtool')}}" method="POST">
+            {{form.hidden_tag()}}
+            <div>
+                <!--The class= attributes passed into the fields is bootstrap css-->
+                {{form.tool_name.label(class="form-label")}}
+                {{form.tool_name(class="form-control")}}
+            </div>
+            <div>
+                {{form.tool_brand.label(class="form-label")}}
+                {{form.tool_brand(class="form-control")}}
+            </div>
+            <div>
+                {{form.quantity.label(class="form-label")}}
+                {{form.quantity(class="form-control")}}
+            </div>
+            <br>
+            <div>
+                {{form.submit(class="btn btn-primary form-control")}}
+            </div>
+            </form>
+    </div>
+{% endblock %}

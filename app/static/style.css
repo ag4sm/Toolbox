@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html body {
+    /*background-image: url(../static/tools.jpg);*/
+    background-color: lightslategray;
+}
+
+h1 {
+    color: lightyellow;
+    text-align: center;
+    font-size: 3em;
+}
+
+.container {
+    margin-top: 9em;
+    color: yellow;
+}

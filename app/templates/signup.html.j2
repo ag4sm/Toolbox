@@ -1,0 +1,67 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    <!--Below code checks to see if someone is logged in to determine if they
+    get the Signup form or the edit_profile form-->
+    {% if current_user.is_authenticated %}
+        Update Profile
+    {% else %}
+        Signup
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h1>
+        {% if current_user.is_authenticated %}
+            Update Profile
+        {% else %}
+            Sign up
+        {% endif %}
+    </h1>
+        <form action="{{url_for('auth.edit_profile') if current_user.is_authenticated else url_for('signup')}}" method="POST">
+            {{form.hidden_tag()}}
+            <div>
+                <!--The class= attributes passed into the fields is bootstrap css-->
+                {{form.first_name.label(class="form-label")}}
+                                                        <!--value below shows field contents on the edit form if user is logged in.  If not, it will show blank on the registration form-->
+                {{form.first_name(class="form-control", value=current_user.first_name)}}
+                {% for error in form.first_name.errors %}
+                    <small style="color:red;">{{error}}</small> 
+                {% endfor %}
+            </div>
+            <div>
+                {{form.last_name.label(class="form-label")}}
+                {{form.last_name(class="form-control", value=current_user.last_name)}}
+                {% for error in form.last_name.errors %}
+                    <small style="color:red;">{{error}}</small> 
+                {% endfor %}
+            </div>
+            <div>
+                {{form.email.label(class="form-label")}}
+                {{form.email(class="form-control", value=current_user.email)}}
+                {% for error in form.email.errors %}
+                    <small style="color:red;">{{error}}</small> 
+                {% endfor %}
+            </div>
+            <div>
+                {{form.password.label(class="form-label")}}
+                {{form.password(class="form-control")}}
+                {% for error in form.password.errors %}
+                    <small style="color:red;">{{error}}</small> 
+                {% endfor %}
+            </div>
+            <div>
+                {{form.confirm_password.label(class="form-label")}}
+                {{form.confirm_password(class="form-control")}}
+                {% for error in form.confirm_password.errors %}
+                    <small style="color:red;">{{error}}</small> 
+                {% endfor %}
+            </div>
+            <br>
+            <div>
+                {{form.submit(class="btn btn-primary form-control")}}
+            </div>
+        </form>
+    </div>
+{% endblock %}
