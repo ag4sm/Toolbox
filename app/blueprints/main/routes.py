@@ -3,14 +3,15 @@ from . import bp as main
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .forms import NewToolForm
-from ...models import Tool, Toolbox
+from ...models import Tool, Toolbox, User
 
 @main.route('/', methods=["GET"])
 @login_required
 def user():
-    u = current_user
-#    mytools = Toolbox.query.all(userid)
-    return render_template('user.html.j2')#, mytools=mytools)
+    u_id = current_user.id
+    mytoolbox = Toolbox.query.get(Toolbox.toolbox_id).first()
+    mytools = mytoolbox.query.filter(Toolbox.tools)
+    return render_template('user.html.j2', mytools=mytools)
 
 @main.route('/newtool', methods=["GET",'POST'])
 @login_required

@@ -4,8 +4,7 @@
     <div class="container">
         <h1>Toolbox Home</h1>
         <h2>Welcome {{ current_user.first_name }} {{ current_user.last_name }} to your ToolBox</h2>
-        
-            <p>    {% for tool in mytools %}
+            <p> {% for tool in mytools %}
                     {{ tool.tool_brand }}
                     {{ tool.tool_name }}
                 {% endfor %}

@@ -19,7 +19,7 @@
             Sign up
         {% endif %}
     </h1>
-        <form action="{{url_for('auth.edit_profile') if current_user.is_authenticated else url_for('signup')}}" method="POST">
+        <form action="{{url_for('auth.edit_profile') if current_user.is_authenticated else url_for('auth.signup')}}" method="POST">
             {{form.hidden_tag()}}
             <div>
                 <!--The class= attributes passed into the fields is bootstrap css-->

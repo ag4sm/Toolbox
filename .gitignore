@@ -5,3 +5,4 @@ __pycache__/
 *.cfg
 *.pyc
 Scripts/
+migrations/

@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password = db.Column(db.String)
     created_on = db.Column(db.DateTime, default=dt.utcnow)
+    #toolboxes = db.relationship('Toolbox', backref='user', lazy=True)
 
     # Should return a unique identifying string
     def __repr__(self):
@@ -47,7 +48,7 @@ def load_user(id):
 class Toolbox(db.Model):
     toolbox_id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    tools = db.relationship('Tool', backref='toolbox', lazy=True, cascade = 'all, delete, delete-orphan')
+    tools = db.relationship('Tool', backref='toolbox', lazy=True)
 
     def __repr__(self):
         return f'<Toolbox: {self.toolbox_id} | {self.tool_id}>'
@@ -66,7 +67,7 @@ class Tool(db.Model):
     tool_name = db.Column(db.String(20), index=True, unique=False)
     tool_brand = db.Column(db.String(20), index=True, unique=False)
     quantity = db.Column(db.Integer)
-    toolboxes = db.relationship('Toolbox', backref='tool', lazy=True, cascade = 'all, delete, delete-orphan')
+    #toolboxes = db.relationship('Toolbox', backref='tool', lazy=True)
 
     def __repr__(self):
         return f'<Tool:  {self.tool_brand} | {self.tool_name}>'
